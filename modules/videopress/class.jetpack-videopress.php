@@ -49,6 +49,7 @@ class Jetpack_VideoPress {
 
 		add_action( 'admin_print_footer_scripts', array( $this, 'print_in_footer_open_media_add_new' ) );
 		add_action( 'admin_head', array( $this, 'enqueue_admin_styles' ) );
+		add_action( 'admin_notices', array( $this, 'add_media_new_notice' ) );
 
 		add_filter( 'wp_mime_type_icon', array( $this, 'wp_mime_type_icon' ), 10, 3 );
 
@@ -108,6 +109,21 @@ class Jetpack_VideoPress {
 
 		return $user_token && is_object( $user_token ) && isset( $user_token->external_user_id ) && $user_id === $user_token->external_user_id;
 	}
+
+	public function add_media_new_notice()
+    {
+	    global $pagenow;
+
+	    if ( $pagenow != 'media-new.php' ) {
+	        return;
+        }
+
+        ?>
+        <div id="message" class="notice">
+            <p></p><?php echo sprintf( __( 'If you would like to upload a video to VideoPress, please use the <a href="%s">Media Library</a> instead.', 'jetpack' ), '/wp-admin/upload.php' ); ?></p>
+        </div>
+        <?php
+    }
 
 	/**
 	 * Register and enqueue VideoPress admin styles.
