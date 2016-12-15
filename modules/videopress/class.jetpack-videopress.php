@@ -119,7 +119,7 @@ class Jetpack_VideoPress {
         }
 
         ?>
-        <div id="message" class="notice">
+        <div id="message" class="notice notice-warning">
             <p></p><?php echo sprintf( __( 'If you would like to upload a video to VideoPress, please use the <a href="%s">Media Library</a> instead.', 'jetpack' ), '/wp-admin/upload.php' ); ?></p>
         </div>
         <?php
