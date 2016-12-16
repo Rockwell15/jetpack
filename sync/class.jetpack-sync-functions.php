@@ -18,7 +18,12 @@ class Jetpack_Sync_Functions {
 		global $wp_taxonomies;
 		$wp_taxonomies_without_callbacks = array();
 		foreach ( $wp_taxonomies as $taxonomy_name => $taxonomy ) {
-			$wp_taxonomies_without_callbacks[ $taxonomy_name ] = self::sanitize_taxonomie( $taxonomy);
+			$sanatized_taxonomy = self::sanitize_taxonomie( $taxonomy );
+			if ( ! empty( $sanatized_taxonomy ) ) {
+				$wp_taxonomies_without_callbacks[ $taxonomy_name ] = $sanatized_taxonomy;
+	 		} else {
+				error_log( 'Jepack encountered a recusive taxobomy:' . $taxonomy_name );
+			}
 		}
 		return $wp_taxonomies_without_callbacks;
 	}
