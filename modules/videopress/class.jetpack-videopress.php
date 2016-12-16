@@ -110,17 +110,19 @@ class Jetpack_VideoPress {
 		return $user_token && is_object( $user_token ) && isset( $user_token->external_user_id ) && $user_id === $user_token->external_user_id;
 	}
 
-	public function add_media_new_notice()
-    {
-	    global $pagenow;
+	/**
+     * Add a notice to the top of the media-new.php to let the user know how to upload a video.
+     */
+	public function add_media_new_notice() {
+        global $pagenow;
 
-	    if ( $pagenow != 'media-new.php' ) {
-	        return;
+        if ( $pagenow != 'media-new.php' ) {
+            return;
         }
 
         ?>
         <div id="message" class="notice notice-warning">
-            <p></p><?php echo sprintf( __( 'If you would like to upload a video to VideoPress, please use the <a href="%s">Media Library</a> instead.', 'jetpack' ), '/wp-admin/upload.php' ); ?></p>
+            <p><?php echo sprintf( __( 'You can upload a video via your <a href="%s">media library</a> or while creating a <a href="%s">new post</a>.', 'jetpack' ), admin_url( 'upload.php' ), admin_url( 'post-new.php' ) ); ?></p>
         </div>
         <?php
     }
