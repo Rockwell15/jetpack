@@ -111,21 +111,21 @@ class Jetpack_VideoPress {
 	}
 
 	/**
-     * Add a notice to the top of the media-new.php to let the user know how to upload a video.
-     */
+	 * Add a notice to the top of the media-new.php to let the user know how to upload a video.
+	 */
 	public function add_media_new_notice() {
-        global $pagenow;
+		global $pagenow;
 
-        if ( $pagenow != 'media-new.php' ) {
-            return;
-        }
+		if ( $pagenow != 'media-new.php' ) {
+			return;
+		}
 
-        ?>
-        <div id="message" class="notice notice-warning">
-            <p><?php echo sprintf( __( 'You can upload a video via your <a href="%s">media library</a> or while creating a <a href="%s">new post</a>.', 'jetpack' ), admin_url( 'upload.php' ), admin_url( 'post-new.php' ) ); ?></p>
-        </div>
-        <?php
-    }
+		?>
+		<div id="message" class="notice notice-warning">
+		<p><?php echo sprintf( __( 'You can upload a video via your <a href="%s">media library</a> or while creating a <a href="%s">new post</a>.', 'jetpack' ), admin_url( 'upload.php' ), admin_url( 'post-new.php' ) ); ?></p>
+		</div>
+		<?php
+	}
 
 	/**
 	 * Register and enqueue VideoPress admin styles.
