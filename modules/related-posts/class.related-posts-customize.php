@@ -146,6 +146,7 @@ class Jetpack_Related_Posts_Customize {
 	 */
 	function get_options( $wp_customize ) {
 		$transport = isset( $wp_customize->selective_refresh ) ? 'postMessage' : 'refresh';
+		$options = Jetpack_Options::get_option( 'relatedposts', array() );
 		return apply_filters(
 			'jetpack_related_posts_customize_options', array(
 				'show_headline'       => array(
@@ -160,7 +161,7 @@ class Jetpack_Related_Posts_Customize {
 					'label'        => '',
 					'description'  => esc_html__( 'Enter text to use as headline.', 'jetpack' ),
 					'control_type' => 'text',
-					'default'      => esc_html__( 'Related', 'jetpack' ),
+					'default'      => isset( $options['headline'] ) ? $options['headline'] : esc_html__( 'Related', 'jetpack' ),
 					'setting_type' => 'option',
 					'transport'    => $transport,
 				),
